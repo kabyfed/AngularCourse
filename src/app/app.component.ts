@@ -7,4 +7,21 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'FirstEvoApp';
+  obj = [
+    {
+      name:'Jack',
+      age: 23
+    },
+    {
+      name:'John',
+      age: 20
+    },
+    {
+      name:'Bill',
+      age: 26
+    },
+  ];
+  now = new Date();
+
+  testNumber = 10;
 }
