@@ -1,0 +1,17 @@
+h1{
+  margin: 20px auto;
+
+}
+.form-container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid grey;
+  border-radius: 20px;
+}
+
+button {
+  margin-top: 20px;
+}
