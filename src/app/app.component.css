@@ -1,0 +1,10 @@
+.main {
+  margin: 50px;
+}
+
+.main div {
+  width: auto;
+  margin-top: 10px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
