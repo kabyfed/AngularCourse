@@ -1,0 +1,16 @@
+.button-task {
+  width: 250px;
+  height: 70px;
+  border: 1px solid rgb(82, 192, 255);
+  border-radius: 20px;
+  font-size: 18px;
+  color: black;
+  cursor: pointer;
+}
+
+.toDo {
+  width: 350px;
+  border: 2px solid grey;
+  margin-top: 20px;
+  padding: 5px;
+}
