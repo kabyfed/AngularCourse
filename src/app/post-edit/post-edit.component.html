@@ -1,0 +1,12 @@
+<div class="card text-center" *ngIf="post">
+  <div class="card-header">
+    Номер поста: {{post.id}}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{ post.title }}</h5>
+    <p class="card-text">{{ post.body }}</p>
+    <a routerLink="/posts" class="btn btn-primary">Сохранить</a>
+
+  </div>
+  <a routerLink="/">На главную</a>
+</div>

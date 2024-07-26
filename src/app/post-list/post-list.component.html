@@ -1,0 +1,14 @@
+<h2>Раздел постов блога</h2>
+<a routerLink="/">На главную</a>
+<div *ngFor="let post of posts">
+  <div class="card">
+    <div class="card-header">
+      Пост пользователя {{post.userId}}
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{post.title}}</h5>
+      <p class="card-text">{{post.body}}</p>
+      <a [routerLink]="['/posts', post.id, 'edit']" class="btn btn-primary">Редактировать</a>
+    </div>
+  </div>
+</div>
