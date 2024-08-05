@@ -1,0 +1,107 @@
+<app-header></app-header>
+<section class="user-page" *ngIf="user">
+  <div class="container">
+
+    <div class="user-container">
+
+      <div class="user">
+        <div class="user-desc">
+          <div class="user-img">
+            <img src={{user.avatar}} alt="avatar img">
+          </div>
+
+          <div class="user-text">
+            <div class="user-name">{{user.firstName}}</div>
+            <div class="user-created">Создан {{user.createdOn | dateFormat}}</div>
+            <div class="user-login-name">{{user.username}}</div>
+          </div>
+        </div>
+
+        <div class="user-role" *ngIf="user.role == 'user'; else admin">
+          <img src="/assets/images/user.png">
+        </div>
+
+        <ng-template #admin>
+          <div class="user-role">
+            <img src="/assets/images/admin.png">
+          </div>
+        </ng-template>
+
+        <button (click)="deleteUser(user.id, user.firstName)">Удалить</button>
+      </div>
+
+    </div>
+
+    <div class="actions-info">
+
+      <div class="info-blocks">
+        <div class="block">
+          <div class="block-title">Всего рецептов</div>
+          <div class="block-text">{{user.posts.length}}</div>
+        </div>
+
+        <div class="block">
+          <div class="block-title">Всего комментариев</div>
+          <div class="block-text">{{user.comments.length}}</div>
+        </div>
+
+        <div class="block">
+          <div class="block-title">Статус</div>
+          <div class="block-text">Активен</div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="created-recipes">
+      <div class="title">Созданные рецепты</div>
+      <div class="recipe-items">
+
+        <div class="recipe-item" *ngFor="let recipe of user.posts">
+          <div class="recipe-img">
+            <img src={{recipe.image}} alt="recipe-img">
+          </div>
+          <div class="recipe-description">
+            <div class="recipe-title">{{recipe.title}}</div>
+            <div class="created-date">Создан: {{recipe.createdOn | dateFormat}}</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="account-info">
+      <div class="info-block">
+        <div class="block-title">Информация аккаунта</div>
+      </div>
+
+      <div class="info-block">
+        <div class="block-title">Фамилия</div>
+        <div class="block-text">{{user.lastName}}</div>
+      </div>
+
+      <div class="info-block">
+        <div class="block-title">Имя</div>
+        <div class="block-text">{{user.firstName}}</div>
+      </div>
+
+      <div class="info-block">
+        <div class="block-title">Отчество</div>
+        <div class="block-text">{{user.middleName}}</div>
+      </div>
+
+      <div class="info-block">
+        <div class="block-title">User-Agent</div>
+        <div class="block-text">Lorem</div>
+      </div>
+
+      <div class="info-block">
+        <div class="block-title">Последний раз заходил</div>
+        <div class="block-text">{{user.lastEntry |dateFormat}}</div>
+      </div>
+
+    </div>
+  </div>
+</section>

@@ -1,0 +1,42 @@
+<header>
+
+  <div class="logo">Foodie</div>
+  <nav class="menu">
+    <ul class="menu-list">
+      <li class="menu-item">
+        <a routerLink="/">Главная</a>
+      </li>
+      <li class="menu-item">
+        <a routerLink="/recipes">Каталог рецептов</a>
+      </li>
+    </ul>
+  </nav>
+
+  <img src="assets/images/edit-header.svg" routerLink="/create-recipe" *ngIf="!isGuest()" class="edit-icon"
+    alt="edit-icon">
+
+  <div *ngIf="!isGuest()" class="author" (click)="toggleDropdown()">
+    <div class="author-img">
+      <img src="assets/images/author.png" alt="author-photo">
+    </div>
+    <div class="author-text">
+      <div class="author-name">{{headerUser?.lastName}} {{headerUser?.firstName}}</div>
+      <div class="author-role">{{headerUser?.role}}</div>
+    </div>
+
+    <ul class="dropdown" [class.show]="isDropdownOpen">
+      <li>Вы вошли как <br>
+        <div class="username">{{headerUser?.username}}</div>
+      </li>
+      <li class="settings" (click)="toggleDropdown()">Настройки аккаунта</li>
+      <li class="settings" *ngIf="isAdmin()" routerLink="/admin/users" (click)="toggleDropdown()">Администрирование</li>
+      <li class="exit" routerLink="/login" (click)="logOut()">Выход</li>
+    </ul>
+  </div>
+
+  <ng-container *ngIf="isGuest()">
+    <button routerLink="/authorization">Вход в аккаунт</button>
+  </ng-container>
+
+
+</header>

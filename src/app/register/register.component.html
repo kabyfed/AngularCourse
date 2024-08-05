@@ -1,0 +1,52 @@
+<app-header></app-header>
+<div class="container">
+  <h1 class="text-center mb-4">Зарегистрируйте ваш аккаунт</h1>
+  <form>
+    <div class="form-container mx-auto">
+      <div class="form-group">
+        <label for="login">Логин</label>
+        <input type="text" required #userName="ngModel" [(ngModel)]="createPerson.username" name="username"
+          [ngClass]="{'is-invalid': userName.invalid && (userName.dirty || userName.touched)}" class="form-control"
+          id="login">
+
+        <div *ngIf="userName.invalid && (userName.dirty || userName.touched)">
+          <div *ngIf="userName.hasError('required')" class="alert alert-danger mt-2" role="alert">
+            Поле должно быть заполнено
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Пароль</label>
+        <input type="password" minlength="4" required #password="ngModel" [(ngModel)]="createPerson.password"
+          name="password" [ngClass]="{'is-invalid': password.invalid && (password.dirty || password.touched)}"
+          class="form-control" id="password">
+
+        <div *ngIf="password.invalid && (password.dirty || password.touched)">
+          <div *ngIf="password.hasError('minlength')" class="alert alert-danger mt-2" role="alert">
+            Минимальная длина пароля должна быть больше 4 символов
+          </div>
+          <div *ngIf="password.hasError('required')" class="alert alert-danger mt-2" role="alert">
+            Поле должно быть заполнено
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="firstName">Имя</label>
+        <input type="text" required [(ngModel)]="createPerson.firstName" name="firstName" class="form-control"
+          id="firstName">
+      </div>
+      <div class="form-group">
+        <label for="lastName">Фамилия</label>
+        <input type="text" required [(ngModel)]="createPerson.lastName" name="lastName" class="form-control"
+          id="lastName">
+      </div>
+      <div class="form-group">
+        <label for="middleName">Отчество (при наличии)</label>
+        <input type="text" required [(ngModel)]="createPerson.middleName" name="middleName" class="form-control"
+          id="middleName">
+      </div>
+      <button type="submit" [disabled]="userName.invalid || password.invalid"
+        class="btn btn-primary btn-block form-group" (click)=" createUser()">Зарегистрироваться</button>
+    </div>
+  </form>
+</div>

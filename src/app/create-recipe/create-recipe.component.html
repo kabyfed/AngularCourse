@@ -1,0 +1,204 @@
+<app-header></app-header>
+
+<section class="create">
+  <div class="container">
+
+    <div *ngIf="!isEditMode; else editModeTemplate" class="main-title">Создание рецепта</div>
+
+    <ng-template #editModeTemplate>
+      <div class="main-title">
+        Редактирование рецепта: {{ recipeForm.get('title')?.value }}
+      </div>
+    </ng-template>
+
+    <div class="create-form">
+
+      <form [formGroup]="recipeForm">
+
+        <div class="main-info">
+          <div class="title">Основная информация</div>
+
+          <div class="field">
+            <div class="field-title">Название рецепта</div>
+            <div class="field-input">
+              <input formControlName="title" type="text" placeholder="Название рецепта">
+              <div *ngIf="recipeForm.get('title')?.invalid && recipeForm.get('title')?.touched"
+                class="alert alert-danger mt-2">
+                Поле должно быть заполнено
+              </div>
+            </div>
+          </div>
+
+          <div class="field area">
+            <div class="field-title">Краткое описание</div>
+            <div class="field-input area">
+              <textarea formControlName="body" placeholder="Опишите о чем ваш рецепт"></textarea>
+              <div *ngIf="recipeForm.get('body')?.invalid && recipeForm.get('body')?.touched"
+                class="alert alert-danger mt-2">
+                Поле должно быть заполнено
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="additional-info">
+          <div class="title">Дополнительная информация</div>
+
+          <div class="field">
+            <div class="field-title">Категория</div>
+            <div class="field-input">
+              <input formControlName="tags" type="text" placeholder="Категория">
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="field-title">Время приготовления</div>
+            <div class="field-input">
+              <input formControlName="timeCooking" type="number" placeholder="Время приготовления">
+              <div *ngIf="recipeForm.get('timeCooking')?.invalid && recipeForm.get('timeCooking')?.touched"
+                class="alert alert-danger mt-2">
+                Пожалуйста, укажите положительное число
+              </div>
+            </div>
+          </div>
+
+          <div formGroupName="foodValue">
+            <div class="field">
+              <div class="field-title">Белки</div>
+              <div class="field-input">
+                <input formControlName="proteins" type="number" placeholder="Белки">
+                <div
+                  *ngIf="recipeForm.get('foodValue.proteins')?.invalid && recipeForm.get('foodValue.proteins')?.touched"
+                  class="alert alert-danger mt-2">
+                  Значение должно быть неотрицательным
+                </div>
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="field-title">Жиры</div>
+              <div class="field-input">
+                <input formControlName="fats" type="number" placeholder="Жиры">
+                <div *ngIf="recipeForm.get('foodValue.fats')?.invalid && recipeForm.get('foodValue.fats')?.touched"
+                  class="alert alert-danger mt-2">
+                  Значение должно быть неотрицательным
+                </div>
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="field-title">Углеводы</div>
+              <div class="field-input">
+                <input formControlName="carbohydrates" type="number" placeholder="Углеводы">
+                <div
+                  *ngIf="recipeForm.get('foodValue.carbohydrates')?.invalid && recipeForm.get('foodValue.carbohydrates')?.touched"
+                  class="alert alert-danger mt-2">
+                  Значение должно быть неотрицательным
+                </div>
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="field-title">Калории</div>
+              <div class="field-input">
+                <input formControlName="calories" type="number" placeholder="Калории">
+                <div
+                  *ngIf="recipeForm.get('foodValue.calories')?.invalid && recipeForm.get('foodValue.calories')?.touched"
+                  class="alert alert-danger mt-2">
+                  Значение должно быть неотрицательным
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="detail-info">
+          <div class="title">
+            Детальная информация
+            <div class="subtitle">Детально опишите первый шаг вашего рецепта</div>
+          </div>
+
+          <div formArrayName="cookingSteps">
+            <ng-container *ngFor="let step of cookingSteps.controls; let i = index">
+              <div [formGroupName]="i" class="field">
+                <div class="field-title">Краткое действие</div>
+                <div class="field-input">
+                  <input formControlName="action" type="text" placeholder="Краткое действие">
+                  <div *ngIf="step.get('action')?.invalid && step.get('action')?.touched"
+                    class="alert alert-danger mt-2">
+                    Поле должно быть заполнено
+                  </div>
+                </div>
+              </div>
+
+              <div [formGroupName]="i" class="field area">
+                <div class="field-title">Описание</div>
+                <div class="field-input area">
+                  <textarea formControlName="description" placeholder="Описание"></textarea>
+                  <div *ngIf="step.get('description')?.invalid && step.get('description')?.touched"
+                    class="alert alert-danger mt-2">
+                    Поле должно быть заполнено
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+
+          <div class="field">
+            <button class="submit-button" (click)="addStep()">Добавить еще</button>
+          </div>
+        </div>
+
+        <div class="ingridient-info">
+          <div class="title">Ингредиенты</div>
+
+          <div formArrayName="ingredients">
+            <ng-container *ngFor="let ingredient of ingredients.controls; let i = index">
+              <div [formGroupName]="i" class="field">
+                <div class="field-title">Название ингредиента</div>
+                <div class="field-input">
+                  <input formControlName="title" type="text" placeholder="Название ингредиента">
+                  <div *ngIf="ingredient.get('title')?.invalid && ingredient.get('title')?.touched"
+                    class="alert alert-danger mt-2">
+                    Поле должно быть заполнено
+                  </div>
+                </div>
+              </div>
+
+              <div [formGroupName]="i" class="field">
+                <div class="field-title">Описание</div>
+                <div class="field-input">
+                  <input formControlName="description" type="text" placeholder="Описание">
+                  <div *ngIf="ingredient.get('description')?.invalid && ingredient.get('description')?.touched"
+                    class="alert alert-danger mt-2">
+                    Поле должно быть заполнено
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+
+          <div class="field button">
+            <button class="submit-button" (click)="addIngredient()">Добавить еще</button>
+          </div>
+        </div>
+
+        <button class="submit-button sent" *ngIf="!isEditMode; else editModeButton" (click)="onSubmit()">
+          <img src="assets/images/white-sent.svg" alt="Отправить" />
+          Отправить рецепт
+        </button>
+        <ng-template #editModeButton>
+          <button class="submit-button sent" (click)="onSubmit()">
+            <img src="assets/images/white-sent.svg" alt="Отправить" />
+            Сохранить рецепт
+          </button>
+        </ng-template>
+
+      </form>
+
+    </div>
+  </div>
+</section>
+
+
+<app-footer></app-footer>

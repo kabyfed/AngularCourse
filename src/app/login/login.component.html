@@ -1,0 +1,49 @@
+<app-header></app-header>
+<div class="container">
+  <div class="text-center mb-4">Войдите в ваш аккаунт</div>
+  <form>
+    <div class="form-container mx-auto">
+      <div class="form-group">
+        <label for="login">Логин</label>
+        <input type="text" required #userName="ngModel" [(ngModel)]="loginPerson.username" name="userName"
+          [ngClass]="{'is-invalid': userName.invalid && (userName.dirty || userName.touched)}" class="form-control"
+          id="login">
+
+        <div *ngIf="userName.invalid && (userName.dirty || userName.touched)">
+          <div *ngIf="userName.hasError('required')" class="alert alert-danger mt-2" role="alert">
+            Поле должно быть заполнено
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="passWord">Пароль</label>
+        <input type="password" minlength="4" required #password="ngModel" [(ngModel)]="loginPerson.password"
+          name="password" [ngClass]="{'is-invalid': password.invalid && (password.dirty || password.touched)}"
+          class="form-control" id="password">
+
+        <div *ngIf="password.invalid && (password.dirty || password.touched)">
+          <div *ngIf="password.hasError('minlength')" class="alert alert-danger mt-2" role="alert">
+            Минимальная длина пароля должна быть больше 4 символов
+          </div>
+          <div *ngIf="password.hasError('required')" class="alert alert-danger mt-2" role="alert">
+            Поле должно быть заполнено
+          </div>
+        </div>
+      </div>
+      <div class="form-group form-check">
+        <div>
+          <input type="checkbox" [(ngModel)]="fastJwt" name="fastJwt" class="form-check-input" id="quickSession">
+          <label class="form-check-label" for="quickSession">Быстрая сессия</label>
+        </div>
+        <a routerLink="/registration" class="float-right">Зарегистрироваться</a>
+      </div>
+      <button type="submit" [disabled]="userName.invalid || password.invalid"
+        class="btn btn-primary btn-block form-group" (click)="signUser()">Вход</button>
+      <hr>
+      <p class="text-center">Или войти через</p>
+      <button type="button" class="btn btn-dark btn-block form-group">
+        <i class="fab fa-github"></i> GitHub
+      </button>
+    </div>
+  </form>
+</div>

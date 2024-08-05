@@ -1,0 +1,34 @@
+<app-header></app-header>
+
+<div class="container">
+  <div class="main-title">Панель администрирования</div>
+  <div class="tabs">
+    <div class="tab" routerLink="/admin/users">Управление пользователями</div>
+    <div class="tab active" routerLink="/admin/recipes" routerLinkActive="active"> Управление рецептами</div>
+  </div>
+
+  <table>
+
+    <thead>
+      <th class="table-header name">НАЗВАНИЕ РЕЦЕПТА</th>
+      <th class="table-header desc">КРАТКОЕ ОПИСАНИЕ</th>
+      <th class="table-header id">ID РЕЦЕПТА</th>
+      <th class="table-header category">КАТЕГОРИЯ</th>
+      <th class="table-header actions"></th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let recipe of recipes">
+        <td class="cell-text">{{recipe.title}}</td>
+        <td class="cell-text">{{recipe.body}}</td>
+        <td class="cell-text">{{recipe.id}}</td>
+        <td class="cell-text">{{recipe.tags}}</td>
+        <td class="cell-text actions">
+          <img src="assets/images/edit.svg" (click)="editRecipe(recipe.id)">
+          <img src="assets/images/trash2.svg" class="trash-icon" (click)="deleteRecipe(recipe.id)">
+        </td>
+      </tr>
+
+
+    </tbody>
+  </table>
+</div>

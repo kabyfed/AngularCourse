@@ -1,0 +1,55 @@
+<app-header></app-header>
+<section class="user-list">
+  <div class="container">
+    <div class="main-title">Панель администрирования</div>
+
+    <div class="tabs">
+      <div class="tab " routerLink="/admin/users" routerLinkActive="active">Управление пользователями</div>
+      <div class="tab" routerLink="/admin/recipes"> Управление рецептами</div>
+    </div>
+
+    <div class="users-info">
+      <div class="title">
+        <div class="title-name">
+          <div class="text">НАИМЕНОВАНИЕ</div>
+        </div>
+        <div class="title-status">
+          <div class="text">СТАТУС</div>
+        </div>
+        <div class="title-role">
+          <div class="text">РОЛЬ</div>
+        </div>
+      </div>
+      <div class="user" *ngFor="let user of users">
+
+        <div class="user-desc ">
+          <div class="user-img">
+            <img src="{{user.avatar}}" alt="avatar img">
+          </div>
+
+          <div class="user-text">
+            <div class="user-name">{{user.firstName}}</div>
+            <div class="user-login-name">{{user.username}}</div>
+          </div>
+        </div>
+
+        <div class="user-status margin">
+          <div class="text">Активен</div>
+        </div>
+
+        <div class="user-role margin">
+          <div class="text">{{user.role}}</div>
+        </div>
+
+        <div class="actions margin">
+
+          <img src="/assets/images/square-pen.svg" [routerLink]="['/admin/users/',user.id]" alt="square-pen icon">
+          <img src="/assets/images/trash.svg" class="trash-icon" alt="trash icon"
+            (click)="deleteUser(user.id, user.firstName)">
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>

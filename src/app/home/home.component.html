@@ -1,0 +1,204 @@
+<app-header></app-header>
+<main class="main">
+
+  <section class="slider">
+    <div class="slider-wrapper">
+      <div class="slider-item" *ngFor="let recipe of displayedBestRecipes">
+        <div class="container">
+          <div class="recipe-info">
+            <h1 class="recipe-title">{{recipe.title}}</h1>
+            <div class="recipe-text">{{recipe.body}}</div>
+            <div class="recipe-meta">
+              <div class="cooking-time">
+                <img src="assets/images/timer.svg" alt="timer">
+                <div class="meta-text">{{recipe.timeCooking}} Минут</div>
+              </div>
+              <div class="food-type">
+                <img src="assets/images/fork-knife.svg" alt="fork-knife">
+                <div class="meta-text">{{recipe.tags}}</div>
+              </div>
+            </div>
+            <div class="recipe-author">
+              <div class="author-img">
+                <img [src]="recipe.author.avatar" alt="author-photo">
+              </div>
+              <div class="author-text">
+                <div class="author-name">{{recipe.author.firstName}} {{recipe.author.lastName}}</div>
+                <div class="author-date">{{recipe.createdOn|dateFormat}}</div>
+              </div>
+            </div>
+            <div class="action">
+              <button [routerLink]="['recipes', recipe.id]" class="icon-button">
+                Посмотреть <img src="assets/images/play-cirlce.svg">
+              </button>
+            </div>
+          </div>
+          <div class="recipe-img">
+            <img [src]="recipe.image" alt="recipe-image" class="recipe-image">
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="slider-prev" (click)="prevSlide()">&#10094;</button>
+    <button class="slider-next" (click)="nextSlide()">&#10095;</button>
+  </section>
+
+
+
+  <section class="best" id="best">
+    <div class="container">
+      <div class="block">
+        <div class="block-title">Лучшие рецепты</div>
+        <div class="block-text">На нашем сайте вы найдете лучшие рецепты, которые помогут вам создавать великолепные
+          блюда и порадовать своих близких и гостей своим кулинарным мастерством.</div>
+      </div>
+      <div class="recipe-items">
+        <div class="recipe-item" *ngFor="let recipe of displayedBestRecipes">
+          <div class="recipe-img">
+            <img [src]="recipe.image" alt="recipe-image">
+            <div (click)="toggleFavorite(recipe.id)">
+              <img [src]="isFavorite(recipe.id) ? 'assets/images/favorite.svg' : 'assets/images/unfavorite.svg'"
+                class="heart-icon">
+            </div>
+          </div>
+          <div class="recipe-description">
+            <div class="recipe-title" [routerLink]="['recipes', recipe.id]">{{recipe.title}}</div>
+            <div class="recipe-meta">
+              <div class="cooking-time">
+                <img src="assets/images/timer.svg" alt="timer">
+                <div class="meta-text">{{recipe.timeCooking}} Минут</div>
+              </div>
+              <div class="food-type">
+                <img src="assets/images/fork-knife.svg" alt="fork-knife">
+                <div>{{recipe.tags}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="more" *ngIf="displayedBestRecipes.length < 6" (click)="showMoreRecipes()">Посмотреть еще</button>
+    </div>
+  </section>
+
+
+  <section class="try">
+    <div class="container">
+      <div class="block">
+        <div class="block-title">Попробуйте эти вкусные рецепты</div>
+        <div class="block-text">Lorem ipsum dolor sit amet, consectetuipisicing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqut enim ad minim </div>
+      </div>
+      <div class="recipe-items">
+
+        <div class="recipe-item" *ngFor="let recipe of displayedTryRecipes">
+          <div class="recipe-img">
+
+            <img src="{{recipe.image}}" alt="recipe-image">
+            <div (click)="toggleFavorite(recipe.id)">
+              <img [src]="isFavorite(recipe.id) ? 'assets/images/favorite.svg' : 'assets/images/unfavorite.svg'"
+                class="heart-icon">
+            </div>
+          </div>
+          <div class="recipe-description">
+            <div class="recipe-title" [routerLink]="['recipes', recipe.id]">{{recipe.title}}</div>
+            <div class="recipe-meta">
+              <div class="cooking-time">
+                <img src="assets/images/timer.svg" alt="timer">
+                <div class="meta-text">{{recipe.timeCooking}} Минут</div>
+              </div>
+              <div class="food-type">
+                <img src="assets/images/fork-knife.svg" alt="fork-knife">
+                <div class="meta-text">{{recipe.tags}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="benefits">
+    <div class="container">
+      <div class="block">Почему именно мы?</div>
+      <div class="benefit-items">
+
+        <div class="benefit-item">
+          <img src="assets/images/check.svg" alt="check-icon">
+          <div class="benefit-text">
+            <div class="benefit-title">Проверенные рецепты</div>
+            <div class="benefit-description">Вы можете найти множество проверенных рецептов, которые помогут вам
+              приготовить вкусные и разнообразные блюда для всей семьи.</div>
+          </div>
+        </div>
+
+        <div class="benefit-item">
+          <img src="assets/images/check.svg" alt="check-icon">
+          <div class="benefit-text">
+            <div class="benefit-title">Для всех</div>
+            <div class="benefit-description">Вы сможете найти легкие и вкусные блюда, которые понравятся и детям, и
+              взрослым.</div>
+          </div>
+        </div>
+
+
+        <div class="benefit-item">
+          <img src="assets/images/check.svg" alt="check-icon">
+          <div class="benefit-text">
+            <div class="benefit-title">Огромное разнообразие</div>
+            <div class="benefit-description">Разнообразие рецептов для всех порадует самых разносторонних гурманов</div>
+          </div>
+        </div>
+
+        <div class="benefit-item">
+          <img src="assets/images/check.svg" alt="check-icon">
+          <div class="benefit-text">
+            <div class="benefit-title">Храним рецепты для вас</div>
+            <div class="benefit-description">Это отличный способ организовать и хранить свою коллекцию кулинарных
+              рецептов. Вместо того, чтобы хранить бумажные копии или оставлять их в разных кулинарных книгах.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="offer">
+    <div class="container">
+      <div class="block">
+        <div class="offer-title">Хотите получать новые рецепты?</div>
+        <div class="offer-text">Не пропустите ни одного вкусного рецепта! Подпишитесь на нашу рассылку, чтобы получать
+          новые кулинарные идеи и рецепты прямо в свою почту.</div>
+      </div>
+      <form>
+        <input type="email" required [(ngModel)]="emailCheck.email" name="email" #email2="ngModel"
+          [ngClass]="{ 'is-invalid': email2.invalid && (email2.dirty || email2.touched) }"
+          placeholder="Введите ваш email..." class="input-text" />
+
+
+        <button type="submit" class="more" value="Подписаться" (click)="subscribeEmail()"
+          [disabled]="email2.invalid || email2.untouched">Подписаться</button>
+
+        <ng-container *ngIf="email2.invalid && (email2.dirty || email2.touched)">
+          <div *ngIf="email2.errors?.['required']" class="alert alert-danger" role="alert">
+            Поле должно быть заполнено
+          </div>
+        </ng-container>
+
+      </form>
+
+
+    </div>
+  </section>
+
+</main>
+
+<div *ngIf="!dismissedStatus" class="notification-bar">
+  <div class="container">
+    <img src="assets/images/Speakerphone.svg" class="notification-icon">
+    <div class="text">Хорошие новости! Мы открыли наш интернет-магазин</div>
+    <img src="assets/images/X.svg" (click)="dismissNotification()" class="close-btn">
+  </div>
+</div>
+
+<app-footer></app-footer>

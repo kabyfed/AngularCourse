@@ -1,0 +1,30 @@
+.footer {
+  max-width: 1440px;
+  min-height: 110px;
+  padding: 0 79px;
+
+  .container {
+    display: flex;
+    height: 120px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 32px;
+
+    .title {
+      font-family: Inter;
+      line-height: 24px;
+      color: rgba(156, 163, 175, 1);
+    }
+
+    .links{
+      display: flex;
+      gap: 24px;
+
+      img{
+        cursor: pointer;
+      }
+    }
+
+
+  }
+}

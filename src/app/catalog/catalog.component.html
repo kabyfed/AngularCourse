@@ -1,0 +1,37 @@
+<app-header></app-header>
+<section class="best" id="best">
+  <div class="container">
+    <div class="block">
+      <div class="block-title">Каталог рецептов</div>
+      <div class="block-text">На нашем сайте вы найдете лучшие рецепты, которые помогут вам создавать великолепные
+        блюда и порадовать своих близких и гостей своим кулинарным мастерством.</div>
+    </div>
+    <div class="recipe-items">
+
+      <div class="recipe-item" *ngFor="let recipe of recipes">
+        <div class="recipe-img">
+          <img src={{recipe.image}} alt="recipe-image">
+          <div (click)="toggleFavorite(recipe.id)">
+            <img [src]="isFavorite(recipe.id) ? 'assets/images/favorite.svg' : 'assets/images/unfavorite.svg'"
+              class="heart-icon">
+          </div>
+        </div>
+        <div class=" recipe-description">
+          <div class="recipe-title" [routerLink]="[recipe.id]">{{recipe.title}}</div>
+          <div class="recipe-meta">
+            <div class="cooking-time">
+              <img src="assets/images/timer.svg" alt="timer">
+              <div class="meta-text">{{recipe.timeCooking}} Минут</div>
+            </div>
+            <div class="food-type">
+              <img src="assets/images/fork-knife.svg" alt="fork-knife">
+              <div>{{recipe.tags}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

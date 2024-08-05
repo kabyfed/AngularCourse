@@ -1,0 +1,666 @@
+.slider-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.slider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 150px;
+  margin-top: 100px;
+
+  .slider-wrapper {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+
+  .slider-item {
+    min-width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .container {
+      display: flex;
+      background: rgba(231, 250, 254, 1);
+      border-radius: 20px;
+      max-width: 1280px;
+      margin: 0 80px;
+      flex: 1;
+    }
+
+    .recipe-info {
+      max-width: 620px;
+      max-height: 640px;
+      margin: 53px 50px 0 50px;
+    }
+
+    .recipe-title {
+      min-width: 520px;
+      font-family: Inter;
+      font-size: 60px;
+      line-height: 72.61px;
+      letter-spacing: -0.02em;
+      color: rgba(0, 0, 0, 1);
+      margin-bottom: 30px;
+    }
+
+    .recipe-text {
+      display: -webkit-box;
+      -webkit-line-clamp: 2; // количество строк
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      font-family: Inter;
+      color: rgba(0, 0, 0, 0.6);
+      line-height: 28px;
+      margin-bottom: 100px;
+    }
+
+    .recipe-meta {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 36px;
+
+      .cooking-time,
+      .food-type {
+        width: 99px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.05);
+        border-radius: 30px;
+        font-family: Inter;
+        font-size: 14px;
+        line-height: 16.94px;
+        letter-spacing: -0.02em;
+        color: rgba(49, 48, 48, 0.6);
+        padding: 8px 16px 8px 21px;
+      }
+
+      .meta-text {
+        margin-left: 8px;
+      }
+    }
+
+    .recipe-author {
+      display: flex;
+      margin-bottom: 55px;
+      float: left;
+
+      .author-img {
+        max-width: 40px;
+        max-height: 40px;
+
+        img {
+          width: 40px;
+          height: 40px;
+        }
+      }
+    }
+
+    .author-text {
+      font-family: Inter;
+      font-weight: 700;
+      margin-left: 18px;
+
+      .author-name {
+        color: rgba(0, 0, 0, 1);
+        margin-bottom: 8px;
+      }
+
+      .author-date {
+        font-family: Inter;
+        font-size: 14px;
+        letter-spacing: -0.02em;
+        color: rgba(0, 0, 0, 0.6);
+      }
+    }
+
+    .action {
+      display: flex;
+
+      .icon-button {
+        width: 200px;
+        height: 60px;
+        border-radius: 16px;
+        background: rgba(58, 51, 149, 1);
+        border: rgba(58, 51, 149, 1);
+        margin-left: 140px;
+        padding: 18px 36px 19px 39px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        font-family: InterMedium;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 16.94px;
+        letter-spacing: -0.02em;
+        color: rgba(255, 255, 255, 1);
+
+        img {
+          margin-left: 19px;
+        }
+      }
+
+      .icon-button:hover {
+        background-color: rgb(28, 21, 121);
+        transition: 0.5s ease;
+      }
+    }
+
+    .recipe-img {
+      width: 660px;
+      height: 640px;
+    }
+
+    .recipe-image {
+      width: 660px;
+      height: 640px;
+    }
+  }
+
+  .slider-prev,
+  .slider-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(230, 250, 254, 1);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 24px;
+    height: 550px;
+    border-radius: 21px;
+
+    &:hover {
+      background-color: rgba(182, 246, 255, 0.8);
+    }
+  }
+
+  .slider-prev {
+    left: -11px;
+  }
+
+  .slider-next {
+    right: -11px;
+  }
+}
+
+
+
+.best {
+  margin-bottom: 150px;
+  border-bottom: 1px solid rgba(209, 213, 219, 1);
+
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .block {
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 70px;
+
+    .block-title {
+      font-family: Inter;
+      font-size: 48px;
+      font-weight: 600;
+      line-height: 58.09px;
+      letter-spacing: -0.04em;
+      margin-bottom: 24px;
+    }
+
+    .block-text {
+      max-width: 706px;
+      font-family: Inter;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 28px;
+      text-align: center;
+      color: rgba(96, 96, 96, 1);
+      padding-right: 7px
+    }
+  }
+
+  .recipe-items {
+    display: grid;
+    grid-template-columns: repeat(3, 400px);
+    gap: 40px;
+    padding: 0 80px;
+    margin-bottom: 75px;
+  }
+
+  .recipe-item {
+    max-width: 400px;
+    background: linear-gradient(180deg, rgba(231, 249, 253, 0) 0%, #E7F9FD 100%);
+    border-radius: 30px;
+    position: relative;
+
+    .recipe-img {
+      height: 250px;
+      margin: 16px 16px 0 16px;
+      position: relative;
+
+      .heart-icon {
+        width: 48px;
+        height: 48px;
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        background-color: white;
+        border-radius: 50%;
+        padding: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+      }
+    }
+
+    .recipe-img img {
+      width: 368px;
+      height: 250px;
+      border-radius: 28px;
+
+
+    }
+
+    .recipe-title {
+      height: 64px;
+      font-family: Inter;
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 32px;
+      letter-spacing: -0.04em;
+      margin-bottom: 24px;
+      cursor: pointer;
+
+    }
+
+    .recipe-description {
+      margin: 21px 24px 0 27px;
+    }
+
+    .recipe-meta {
+      display: flex;
+      justify-content: space-between;
+
+      .food-type,
+      .cooking-time {
+        display: flex;
+        align-items: center;
+        margin-bottom: 32px;
+        color: rgba(0, 0, 0, 0.6);
+        font-family: Inter;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 16.94px;
+        letter-spacing: -0.02em;
+        text-align: left;
+      }
+
+      .food-type,
+      .cooking-time span {
+        margin-left: 10px;
+      }
+
+      .meta-text {
+        margin-left: 8px;
+      }
+    }
+  }
+
+  .more {
+    width: 187px;
+    height: 50px;
+    padding: 12px 25px;
+    margin: 0 auto;
+    margin-bottom: 100px;
+
+    font-size: 16px;
+    font-family: InterMedium;
+    font-weight: 500;
+    line-height: 24px;
+
+    color: rgba(55, 65, 81, 1);
+
+    border-radius: 6px;
+    border: 1px solid rgba(209, 213, 219, 1);
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+
+    cursor: pointer;
+  }
+
+  .more:hover {
+    background-color: rgb(233, 233, 233);
+    transition: 0.5s ease;
+  }
+}
+
+.try {
+  margin-bottom: 150px;
+  border-bottom: 1px solid rgba(209, 213, 219, 1);
+
+  .container {
+    max-width: 1280px;
+    margin: 0 80px;
+  }
+
+  .block {
+
+    display: flex;
+    align-items: center;
+    margin-bottom: 80px;
+
+    .block-title {
+      min-width: 560px;
+      font-family: InterMedium;
+      font-size: 48px;
+      font-weight: 600;
+      line-height: 58.09px;
+      letter-spacing: -0.04em;
+      color: black;
+    }
+
+    .block-text {
+      margin-left: 96px;
+      font-family: InterMedium;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 28px;
+      color: rgba(0, 0, 0, 0.6);
+
+    }
+  }
+
+  .recipe-items {
+    display: grid;
+    grid-template-columns: repeat(4, 290px);
+    gap: 40px;
+    margin-bottom: 116px;
+  }
+
+  .recipe-item {
+    max-width: 400px;
+    position: relative;
+
+    .recipe-img {
+      height: 200px;
+      margin-bottom: 16px;
+      position: relative;
+
+      .heart-icon {
+        width: 48px;
+        height: 48px;
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        background-color: white;
+        border-radius: 50%;
+        padding: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+
+      }
+
+    }
+
+
+
+    .recipe-img img {
+      width: 100%;
+      max-width: 290px;
+      height: 200px;
+      border-radius: 30px;
+
+    }
+
+    .recipe-title {
+      height: 52px;
+      font-family: Inter;
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 26px;
+      letter-spacing: -0.04em;
+      cursor: pointer;
+      margin-bottom: 24px;
+      color: black;
+    }
+
+
+    .recipe-meta {
+      display: flex;
+      justify-content: space-between;
+      font-family: Inter;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 16.94px;
+      letter-spacing: -0.02em;
+
+      .food-type,
+      .cooking-time {
+        display: flex;
+        align-items: center;
+        margin-bottom: 32px;
+        color: rgba(0, 0, 0, 0.6);
+
+      }
+
+      .food-type,
+      .cooking-time span {
+        margin-left: 10px;
+      }
+
+      .meta-text {
+        margin-left: 7px;
+      }
+    }
+  }
+}
+
+.benefits {
+
+  .container {
+    max-width: 1280px;
+    margin: 0 80px;
+  }
+
+  margin-bottom: 118px;
+
+  .block {
+    font-family: Inter;
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 36px;
+    text-align: center;
+    color: rgba(17, 24, 39, 1);
+    margin-bottom: 81px;
+  }
+
+  .benefit-items {
+    display: flex;
+    gap: 32px;
+    margin: 0 32px;
+
+    .benefit-text {
+      margin-left: 12px;
+    }
+
+    .benefit-item {
+      min-width: 280px;
+      min-height: 256px;
+      display: flex;
+      align-items: flex-start;
+
+      .benefit-title {
+        font-family: InterMedium;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 24px;
+
+        color: rgba(17, 24, 39, 1);
+        margin-bottom: 8px;
+      }
+
+      .benefit-description {
+        //styleName: text-base/leading-6/font-normal;
+        font-family: Inter;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+        text-align: left;
+        color: rgba(107, 114, 128, 1);
+
+      }
+    }
+
+
+  }
+}
+
+.offer {
+  margin-bottom: 148px;
+
+  .container {
+    background: rgba(231, 249, 253, 1);
+    display: flex;
+    align-items: center;
+    max-width: 1320px;
+    margin: 0 60px;
+    border-radius: 24px;
+    padding-left: 3px;
+  }
+
+  .block {
+    width: 679px;
+    margin: 80px 0 80px 80px;
+  }
+
+  .offer-title {
+    font-family: InterMedium;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 36px;
+    letter-spacing: -0.018em;
+    margin-bottom: 12px;
+  }
+
+  .offer-text {
+    font-family: Inter;
+    line-height: 28px;
+    margin-left: -3px;
+    color: rgba(112, 112, 112, 1);
+  }
+
+
+  .input-text {
+    width: 281px;
+    height: 50px;
+    box-sizing: border-box;
+    padding: 13px 0 13px 21px;
+    float: left;
+    margin-left: 29px;
+  }
+
+  ::placeholder {
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    color: rgba(107, 114, 128, 1);
+
+  }
+
+
+  .more {
+    width: 154px;
+    height: 50px;
+
+    margin-left: 13px;
+
+    padding: 12px 25px;
+
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+
+    color: rgba(255, 255, 255, 1);
+
+    border-radius: 6px;
+    border: 1px solid rgba(58, 51, 149, 1);
+    background: rgba(58, 51, 149, 1);
+
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+
+    cursor: pointer;
+  }
+
+  .more:hover {
+    background-color: rgb(28, 21, 121);
+    transition: 0.5s ease;
+  }
+}
+
+.alert {
+  width: 281px;
+  margin-left: 30px;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  border-radius: 5px;
+  padding: 0.75rem 1.25rem;
+
+  .alert .alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+  }
+
+
+}
+
+
+.more[disabled] {
+  background: #b3b3b3 !important;
+  border: 1px solid #b3b3b3 !important;
+  color: #b3b3b3;
+  pointer-events: none !important;
+}
+
+.notification-bar {
+  width: 100%;
+  height: 64px;
+  background: rgba(58, 51, 149, 1);
+  color: rgba(255, 255, 255, 1);
+  font-family: 'Inter';
+  position: absolute;
+
+  .container {
+    width: 1280px;
+    height: 64px;
+    margin: 0 80px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .text {
+      margin-left: 12px;
+    }
+
+    .close-btn {
+      margin-left: 785px;
+      cursor: pointer;
+    }
+  }
+}

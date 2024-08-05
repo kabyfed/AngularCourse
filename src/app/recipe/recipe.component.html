@@ -1,0 +1,201 @@
+<app-header></app-header>
+<ng-container *ngIf="recipe">
+
+  <section class="main-content">
+    <div class="container">
+      <div class="recipe-main">
+        <div class="recipe">
+          <div class="recipe-title">
+            {{recipe.title}}
+          </div>
+
+          <div class="block">
+            <div class="recipe-author">
+              <div class="author-img">
+                <img src="{{recipe.author.avatar}}" alt="author-photo">
+              </div>
+              <div class="author-text">
+                <div class="author-name">{{recipe.author.firstName}} {{recipe.author.lastName}}</div>
+                <div class="author-date">{{recipe.createdOn | dateFormat}}</div>
+              </div>
+            </div>
+
+            <div class="cooking-time">
+              <img src="assets/images/timer.svg" alt="timer">
+              <div class="cooking-time-text">
+                <div class="time">ВРЕМЯ ПРИГОТОВЛЕНИЯ</div>
+                <div>{{recipe.timeCooking}} Минут</div>
+              </div>
+            </div>
+
+            <div class="category">
+              <img src="assets/images/fork-knife.svg" alt="fork-knife">
+              <div>{{recipe.tags}}</div>
+            </div>
+
+          </div>
+          <div class="recipe-img">
+            <img src="{{recipe.image}}" alt="chicken-wings" class="recipe-image">
+          </div>
+        </div>
+
+
+        <div>
+
+          <div class="actions">
+            <div>
+              <img [src]="isFavorite(recipe.id) ? 'assets/images/unfavorites.svg' : 'assets/images/favorites.svg'"
+                (click)="toggleFavorite(recipe.id)">
+              <div (click)="toggleFavorite(recipe.id)">В ИЗБРАННОЕ</div>
+            </div>
+
+            <div>
+              <img src="assets/images/print.svg" (click)="printPage()">
+              <div (click)="printPage()">РАСПЕЧАТАТЬ</div>
+            </div>
+            <div>
+              <img src="assets/images/share.svg" (click)="Share()">
+              <div>ПОДЕЛИТЬСЯ</div>
+            </div>
+          </div>
+
+          <div class="nutrition-facts">
+            <div class="nutritional-value">Пищевая ценность</div>
+
+            <div class="nutritional-info">
+              <div class="text">Калории</div>
+              <div class="value">{{recipe.foodValue.calories}} ккал</div>
+            </div>
+            <div class="nutritional-info">
+              <div class="text">Жиры</div>
+              <div class="value">{{recipe.foodValue.fats}} г</div>
+            </div>
+            <div class="nutritional-info">
+              <div class="text">Углеводы</div>
+              <div class="value">{{recipe.foodValue.carbohydrates}} г</div>
+            </div>
+            <div class="nutritional-info">
+              <div class="text">Белки</div>
+              <div class="value">{{recipe.foodValue.proteins}} г</div>
+            </div>
+            <div class="footer">Значения приблизительные</div>
+          </div>
+
+        </div>
+      </div>
+      <div class="recipe-desc">
+        {{recipe.body}}
+      </div>
+    </div>
+
+  </section>
+
+  <section class="recipe-ingridients">
+    <section class="ingridients">
+      <div class="title">Ингредиенты</div>
+      <div class="title2">Что вам пригодится</div>
+
+      <div class="ingridient" *ngFor="let ingredient of recipe.ingredients">
+        <label class="checkbox-container">
+          <input type="checkbox">
+          <span class="checkmark"></span>
+          <span class="ingredient-title">{{ ingredient.title }}</span>
+        </label>
+      </div>
+
+
+    </section>
+
+
+    <article class="other-recepies">
+      <div class="other-title">Прочие рецепты</div>
+      <div class="other-recepie" *ngFor="let recipe of displayedOtherRecipes">
+        <img src="{{recipe.image}}">
+        <div class="other-text">
+          <div class="recipe-name" (click)="changeRecipeId(recipe.id)">{{recipe.title}}</div>
+          <div class="recipe-author">От {{recipe.author.firstName}} {{recipe.author.lastName}}</div>
+        </div>
+      </div>
+
+
+    </article>
+  </section>
+
+  <section class="steps">
+    <div class="title">Шаги приготовления</div>
+
+    <div class="step" *ngFor="let step of recipe.cookingSteps">
+      <label class="checkbox-container">
+        <input type="checkbox" class="step-checkbox">
+        <span class="checkmark"></span>
+        <div class="step-desc">
+          <div class="title">{{step.title}}</div>
+          <div class="text">{{step.description}}</div>
+        </div>
+      </label>
+    </div>
+  </section>
+
+  <section class="try">
+    <div class="container">
+      <div class="title">Возможно вам понравятся эти рецепты</div>
+      <div class="recipe-items">
+
+        <div class="recipe-item" *ngFor="let recipe of displayedTryRecipes">
+          <div class="recipe-img">
+
+            <img src="{{recipe.image}}" alt="recipe-image">
+            <div (click)="toggleFavorite(recipe.id)">
+              <img [src]="isFavorite(recipe.id) ? 'assets/images/favorite.svg' : 'assets/images/unfavorite.svg'"
+                class="heart-icon">
+            </div>
+          </div>
+          <div class="recipe-description">
+            <div class="recipe-title" (click)="changeRecipeId(recipe.id)">{{recipe.title}}</div>
+            <div class="recipe-meta">
+              <div class="cooking-time">
+                <img src="assets/images/timer.svg" alt="timer">
+                <div class="meta-text">{{recipe.timeCooking}} Минут</div>
+              </div>
+              <div class="food-type">
+                <img src="assets/images/fork-knife.svg" alt="fork-knife">
+                <div class="meta-text">{{recipe.tags}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="comments">
+    <div class="container">
+      <div class="title">Комментарии</div>
+
+      <div class="comment" *ngFor="let comment of recipe.comments">
+        <img src="{{comment.user.avatar}}" alt="author-photo">
+        <div class="comment-desc">
+          <div class="author-name">{{comment.user.firstName}} {{comment.user.lastName}}</div>
+          <div class="comment-date">{{comment.createdOn |dateFormat}}</div>
+          <div class="comment-text">{{comment.text}}</div>
+        </div>
+      </div>
+
+      <div class="comment-form">
+        <div class="form-title">Ваш комментарий</div>
+        <div class="textarea-container">
+          <textarea [(ngModel)]="commentText" placeholder="Введите ваш комментарий..."></textarea>
+          <button class="submit-button" type="submit" (click)="sentComment()">
+            <img src="assets/images/sent.svg" alt="Отправить" />
+            Отправить
+          </button>
+        </div>
+      </div>
+
+
+    </div>
+  </section>
+
+</ng-container>
+<app-footer></app-footer>
